@@ -1,0 +1,17 @@
+.App {
+  text-align: center;
+}
+
+.Delete {
+  background-image: url("../static/delete.png");
+  width: 5%;
+  height: 5%;
+  font-size: 2em;
+}
+
+.Edit {
+  background-image: url("../static/edit.png");
+  width: 5%;
+  height: 5%;
+  font-size: 2em;
+}
