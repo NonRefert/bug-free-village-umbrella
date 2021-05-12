@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './css/index.css';
-import TaskMenu from './TaskMenu';
+import './index.css';
+import TaskMenu from './components/TaskMenu';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(

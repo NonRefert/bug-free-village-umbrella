@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import TaskMenu from './TaskMenu';
+import TaskMenu from './taskMenu/TaskMenu';
 
 test('renders learn react link', () => {
     render(<TaskMenu />);
