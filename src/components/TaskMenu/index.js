@@ -2,7 +2,6 @@ import React from "react";
 import "./index.css"
 import FilterBar from "../FilterBar";
 import ConfigurationBar from "../ConfigurationBar";
-import TaskInputForm from "../Input";
 import InfoHeader from "../InfoHeader";
 import TaskList from "../TaskList";
 
@@ -20,8 +19,7 @@ class TaskMenu extends React.Component {
     this.state = {
       tasks: userTasks,
       filteringValue: "",
-      showEditInputComponent: false,
-      currentEditableTask: -1
+      showEditInputComponent: false
     }
   }
 
@@ -72,26 +70,18 @@ class TaskMenu extends React.Component {
   }
 
   render() {
-    const {filteringValue, tasks, currentEditableTask} = this.state;
+    const {filteringValue, tasks} = this.state;
     const filteredTasks = tasks.filter(task => task.description.indexOf(filteringValue) !== -1);
 
     return (
       <div className="Menu">
         <FilterBar filteringValue={filteringValue} onFilter={this.handleFiltering}/>
         <ConfigurationBar onAdd={this.handleTaskAdd}/>
-        {this.state.showEditInputComponent &&
-        <TaskInputForm onSubmit={this.handleTaskEdit}
-                       value={tasks[currentEditableTask].description}
-                       taskId={currentEditableTask}
-        />}
         <InfoHeader taskAmount={filteredTasks.length}/>
         <TaskList
           tasks={filteredTasks}
           filteringValue={filteringValue}
-          onEdit={(taskId) => {
-            this.setState({currentEditableTask: taskId})
-            this.toggleComponent(editTaskInputComponent)
-          }}
+          onEdit={this.handleTaskEdit}
           onDelete={this.handleTaskDelete}
         />
       </div>

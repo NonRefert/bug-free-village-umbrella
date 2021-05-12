@@ -8,8 +8,9 @@ class TaskList extends React.Component {
       .map((taskInfo) =>
         <li key={taskInfo.taskId}>
           <TaskContainer
-            taskDescription={taskInfo.description}
-            onEdit={() => this.props.onEdit(taskInfo.taskId)}
+            description={taskInfo.description}
+            taskId={taskInfo.taskId}
+            onEdit={this.props.onEdit}
             onDelete={() => this.props.onDelete(taskInfo.taskId)}
           />
         </li>);
