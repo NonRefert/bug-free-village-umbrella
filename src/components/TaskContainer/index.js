@@ -18,8 +18,8 @@ class TaskContainer extends React.Component {
   }
 
   handleEdit = (taskInfo) => {
-    this.setState((previousState) => ({showEditInputComponent: !previousState.showEditInputComponent}));
     this.props.onEdit(taskInfo)
+    this.setState((previousState) => ({showEditInputComponent: !previousState.showEditInputComponent}));
   }
 
   render() {

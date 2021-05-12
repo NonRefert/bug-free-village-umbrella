@@ -71,7 +71,7 @@ class TaskMenu extends React.Component {
 
   render() {
     const {filteringValue, tasks} = this.state;
-    const filteredTasks = tasks.filter(task => task.description.indexOf(filteringValue) !== -1);
+    const filteredTasks = tasks.filter(task => task.description.includes(filteringValue));
 
     return (
       <div className="Menu">
