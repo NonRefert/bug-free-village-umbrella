@@ -1,7 +1,7 @@
 import React from "react";
 import "./ConfigurationBar.css"
 import "../TaskInputForm/TaskInputForm"
-import TaskInputForm from "../TaskInputForm/TaskInputForm";
+import MultitaskInputForm from "../MultitaskInputForm/MultitaskInputForm";
 
 class ConfigurationBar extends React.Component {
   constructor(props) {
@@ -18,13 +18,18 @@ class ConfigurationBar extends React.Component {
     }));
   }
 
+  handleAdding = (tasks) => {
+    this.props.onAdd(tasks);
+    this.toggleAddTaskComponent();
+  }
+
   render() {
     return (
       <div>
         <button onClick={this.toggleAddTaskComponent}>Add task</button>
-        {this.state.showAddInputComponent && <TaskInputForm
+        {this.state.showAddInputComponent && <MultitaskInputForm
           categories={this.props.categories}
-          onSubmit={this.props.onAdd}
+          onSubmit={this.handleAdding}
         />}
       </div>
     );

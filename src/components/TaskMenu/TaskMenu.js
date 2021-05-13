@@ -5,12 +5,10 @@ import ConfigurationBar from "../ConfigurationBar/ConfigurationBar";
 import InfoHeader from "../InfoHeader/InfoHeader";
 import TaskList from "../TaskList/TaskList";
 
-const editTaskInputComponent = "editTask"
-
 const userTasks = [
   {taskId: 0, description: "Kill all heretics", category: "Kill", modificationDate: new Date()},
-  {taskId: 1, description: "Restore emperor's body", category: "Plunder", modificationDate: new Date()},
-  {taskId: 2, description: "Cadia stands", category: "Burn", modificationDate: new Date()}
+  {taskId: 1, description: "Collect gold", category: "Plunder", modificationDate: new Date()},
+  {taskId: 2, description: "Prospero", category: "Burn", modificationDate: new Date()}
 ];
 
 const availableCategories = ["Burn", "Kill", "Plunder"];
@@ -20,18 +18,7 @@ class TaskMenu extends React.Component {
     super(props);
     this.state = {
       tasks: userTasks,
-      filteringValue: "",
-      showEditInputComponent: false
-    }
-  }
-
-  toggleComponent = (component) => {
-    switch (component) {
-      case editTaskInputComponent:
-        this.setState((state) => ({showEditInputComponent: !state.showEditInputComponent}));
-        break;
-      default:
-        return;
+      filteringValue: ""
     }
   }
 
@@ -41,13 +28,13 @@ class TaskMenu extends React.Component {
     }));
   }
 
-  handleTaskAdd = (taskInfo) => {
+  handleTaskAdd = (newTasks) => {
     this.setState((previousState) => {
-      const {tasks} = previousState;
+      const tasks = previousState.tasks.slice(0, previousState.tasks.length);
+      const date = new Date();
+      newTasks.forEach(task => tasks.push({...task, taskId: tasks.length, modificationDate: date}));
 
-      return {
-        tasks: [...tasks, {...taskInfo, taskId: tasks.length, modificationDate: new Date()}],
-      };
+      return {tasks: tasks};
     });
   }
 
@@ -64,7 +51,6 @@ class TaskMenu extends React.Component {
 
       return {tasks: tasks};
     });
-    this.toggleComponent(editTaskInputComponent)
   }
 
   handleFiltering = (value) => {
