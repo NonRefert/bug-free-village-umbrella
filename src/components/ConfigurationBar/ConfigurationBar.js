@@ -1,7 +1,7 @@
 import React from "react";
-import "./index.css"
-import "../TaskInputForm"
-import TaskInputForm from "../TaskInputForm";
+import "./ConfigurationBar.css"
+import "../TaskInputForm/TaskInputForm"
+import TaskInputForm from "../TaskInputForm/TaskInputForm";
 
 class ConfigurationBar extends React.Component {
   constructor(props) {

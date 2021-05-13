@@ -1,9 +1,9 @@
 import React from "react";
-import "./index.css"
-import FilterBar from "../FilterBar";
-import ConfigurationBar from "../ConfigurationBar";
-import InfoHeader from "../InfoHeader";
-import TaskList from "../TaskList";
+import "./TaskMenu.css"
+import FilterBar from "../FilterBar/FilterBar";
+import ConfigurationBar from "../ConfigurationBar/ConfigurationBar";
+import InfoHeader from "../InfoHeader/InfoHeader";
+import TaskList from "../TaskList/TaskList";
 
 const editTaskInputComponent = "editTask"
 

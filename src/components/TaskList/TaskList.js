@@ -1,6 +1,6 @@
 import React from "react";
-import "./index.css"
-import TaskContainer from "../TaskContainer";
+import "./TaskList.css"
+import TaskContainer from "../TaskContainer/TaskContainer";
 
 class TaskList extends React.Component {
   render() {

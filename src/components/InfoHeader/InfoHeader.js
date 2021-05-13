@@ -1,4 +1,4 @@
-import "./index.css"
+import "./InfoHeader.css"
 
 function InfoHeader(props) {
   return (

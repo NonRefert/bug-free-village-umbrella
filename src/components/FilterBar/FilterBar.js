@@ -1,4 +1,4 @@
-import "./index.css"
+import "./FilterBar.css"
 
 function FilterBar(props) {
   return (

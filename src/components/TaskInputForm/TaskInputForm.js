@@ -1,5 +1,5 @@
 import React from "react";
-import "./index.css"
+import "./TaskInputForm.css"
 
 class TaskInputForm extends React.Component {
   constructor(props) {
