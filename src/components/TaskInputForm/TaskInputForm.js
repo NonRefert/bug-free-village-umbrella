@@ -1,5 +1,7 @@
 import React from "react";
 import "./TaskInputForm.css"
+import "../TaskInfoInput/TaskInfoInput"
+import TaskInfoInput from "../TaskInfoInput/TaskInfoInput";
 
 class TaskInputForm extends React.Component {
   constructor(props) {
@@ -7,27 +9,26 @@ class TaskInputForm extends React.Component {
 
     this.state = {
       taskId: props.taskId,
-      description: props.description
+      description: props.description,
+      category: props.currentCategory
     }
   }
 
-  componentDidMount() {
-    console.log("Element was created");
-  }
-
-  componentWillUnmount() {
-    console.log("Element was destroyed");
-  }
-
   render() {
+    const {description, category, taskId} = this.state;
+
     return (
-      <fieldset>
-        <input type="text"
-               value={this.state.description}
-               onChange={(element) => this.setState({description: element.target.value})}
+      <div>
+        <TaskInfoInput
+          description={description}
+          currentCategory={category}
+          inputIdentifier={taskId}
+          categories={this.props.categories}
+          onDescriptionUpdate={value => this.setState({description: value})}
+          onCategoryUpdate={value => this.setState({category: value})}
         />
         <button onClick={() => this.props.onSubmit({...this.state})}>Submit</button>
-      </fieldset>
+      </div>
     )
   }
 }

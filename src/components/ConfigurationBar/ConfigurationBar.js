@@ -22,7 +22,10 @@ class ConfigurationBar extends React.Component {
     return (
       <div>
         <button onClick={this.toggleAddTaskComponent}>Add task</button>
-        {this.state.showAddInputComponent && <TaskInputForm onSubmit={this.props.onAdd}/>}
+        {this.state.showAddInputComponent && <TaskInputForm
+          categories={this.props.categories}
+          onSubmit={this.props.onAdd}
+        />}
       </div>
     );
   }

@@ -10,6 +10,8 @@ class TaskList extends React.Component {
           <TaskContainer
             description={taskInfo.description}
             taskId={taskInfo.taskId}
+            currentCategory={taskInfo.category}
+            categories={this.props.categories}
             onEdit={this.props.onEdit}
             onDelete={() => this.props.onDelete(taskInfo.taskId)}
           />

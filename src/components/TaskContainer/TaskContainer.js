@@ -32,7 +32,9 @@ class TaskContainer extends React.Component {
         </div>
         {this.state.showEditInputComponent && <TaskInputForm
           taskId={this.props.taskId}
+          currentCategory={this.props.currentCategory}
           description={this.props.description}
+          categories={this.props.categories}
           onSubmit={this.handleEdit}
         />}
       </div>

@@ -8,10 +8,12 @@ import TaskList from "../TaskList/TaskList";
 const editTaskInputComponent = "editTask"
 
 const userTasks = [
-  {taskId: 0, description: "Kill all heretics", modificationDate: new Date()},
-  {taskId: 1, description: "Restore emperor's body", modificationDate: new Date()},
-  {taskId: 2, description: "Cadia stands", modificationDate: new Date()}
+  {taskId: 0, description: "Kill all heretics", category: "Kill", modificationDate: new Date()},
+  {taskId: 1, description: "Restore emperor's body", category: "Plunder", modificationDate: new Date()},
+  {taskId: 2, description: "Cadia stands", category: "Burn", modificationDate: new Date()}
 ];
+
+const availableCategories = ["Burn", "Kill", "Plunder"];
 
 class TaskMenu extends React.Component {
   constructor(props) {
@@ -76,11 +78,12 @@ class TaskMenu extends React.Component {
     return (
       <div className="Menu">
         <FilterBar filteringValue={filteringValue} onFilter={this.handleFiltering}/>
-        <ConfigurationBar onAdd={this.handleTaskAdd}/>
+        <ConfigurationBar categories={availableCategories} onAdd={this.handleTaskAdd}/>
         <InfoHeader taskAmount={filteredTasks.length}/>
         <TaskList
           tasks={filteredTasks}
           filteringValue={filteringValue}
+          categories={availableCategories}
           onEdit={this.handleTaskEdit}
           onDelete={this.handleTaskDelete}
         />
