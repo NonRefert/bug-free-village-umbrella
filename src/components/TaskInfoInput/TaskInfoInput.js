@@ -16,17 +16,19 @@ function TaskInfoInput(props) {
 
   return (
     <table className="TaskInfoInput">
+      <tbody>
       <tr>
-        <th><label>Description:</label></th>
-        <th>
+        <td><label>Description:</label></td>
+        <td>
           <input type="text" value={props.description}
                  onChange={element => props.onDescriptionUpdate(element.target.value)}/>
-        </th>
+        </td>
       </tr>
       <tr>
-        <th><label>Category:</label></th>
-        <th>{categoriesRadio}</th>
+        <td><label>Category:</label></td>
+        <td>{categoriesRadio}</td>
       </tr>
+      </tbody>
     </table>
   );
 }

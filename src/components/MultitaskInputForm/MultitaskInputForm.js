@@ -6,17 +6,20 @@ import TaskInfoInput from "../TaskInfoInput/TaskInfoInput";
 class MultitaskInputForm extends React.Component {
   constructor(props) {
     super(props);
+    const idGenerator = createIdGenerator();
 
     this.state = {
-      tasks: [formNewTask(0)]
+      idGenerator: idGenerator,
+      tasks: [formNewTask(idGenerator.next().value)]
     }
   }
 
   handleInputAdding = () => {
     this.setState((previousState) => {
-      const {tasks} = previousState;
+      const {tasks, idGenerator} = previousState;
+      const nextId = idGenerator.next().value;
 
-      return {tasks: [...tasks, formNewTask(tasks.length)]};
+      return {tasks: [...tasks, formNewTask(nextId)]};
     });
   }
 
@@ -26,39 +29,38 @@ class MultitaskInputForm extends React.Component {
     }));
   }
 
-  handleInfoUpdate = (task) => {
+  handleInfoUpdate = (task, index) => {
     this.setState((previousState) => {
       const {tasks: previousTasks} = previousState;
-      const {taskId: index} = task;
       const tasks = [...previousTasks.slice(0, index), task, ...previousTasks.slice(index + 1, previousTasks.length)];
 
       return {tasks: tasks};
-    })
+    });
   }
 
   render() {
     const {tasks} = this.state;
     return (
       <div>
-        {tasks.map((task, index) => {
-          const {description, category, taskId} = task;
-          return (
-            <ul>
-              <li key={index}>
+        <ul className="MultitaskForm">
+          {tasks.map((task, index) => {
+            const {description, category, taskId} = task;
+            return (
+              <li key={taskId}>
                 <TaskInfoInput
                   description={description}
                   currentCategory={category}
-                  inputIdentifier={formInputIdentifier(index)}
+                  inputIdentifier={formInputIdentifier(taskId)}
                   categories={this.props.categories}
-                  onDescriptionUpdate={value => this.handleInfoUpdate({...task, description: value})}
-                  onCategoryUpdate={value => this.handleInfoUpdate({...task, category: value})}
+                  onDescriptionUpdate={value => this.handleInfoUpdate({...task, description: value}, index)}
+                  onCategoryUpdate={value => this.handleInfoUpdate({...task, category: value}, index)}
                 />
-                <button onClick={() => this.handleInputAdding()} disabled={index !== tasks.length - 1}>Add</button>
+                <button onClick={this.handleInputAdding} disabled={index !== tasks.length - 1}>Add</button>
                 <button onClick={() => this.handleInputRemoving(taskId)} disabled={tasks.length === 1}>Remove</button>
               </li>
-            </ul>
-          );
-        })}
+            );
+          })}
+        </ul>
         <button onClick={() => this.props.onSubmit(tasks.slice(0, tasks.length))}>Submit</button>
       </div>
     )
@@ -66,11 +68,19 @@ class MultitaskInputForm extends React.Component {
 }
 
 function formInputIdentifier(taskId) {
-  return `add_task_${taskId}`
+  return `add_task_${taskId}`;
 }
 
 function formNewTask(taskId, description = "", category = "") {
-  return {taskId: taskId, description: description, category: category}
+  return {taskId: taskId, description: description, category: category};
+}
+
+function* createIdGenerator() {
+  let counter = 0;
+  while (true) {
+    yield counter;
+    counter++;
+  }
 }
 
 export default MultitaskInputForm;

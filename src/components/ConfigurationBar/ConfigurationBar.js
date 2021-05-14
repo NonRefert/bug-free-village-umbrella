@@ -19,7 +19,7 @@ class ConfigurationBar extends React.Component {
   }
 
   handleAdding = (tasks) => {
-    this.props.onAdd(tasks);
+    this.props.onTaskAdd(tasks);
     this.toggleAddTaskComponent();
   }
 

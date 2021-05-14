@@ -5,19 +5,23 @@ import ConfigurationBar from "../ConfigurationBar/ConfigurationBar";
 import InfoHeader from "../InfoHeader/InfoHeader";
 import TaskList from "../TaskList/TaskList";
 
-const userTasks = [
-  {taskId: 0, description: "Kill all heretics", category: "Kill", modificationDate: new Date()},
-  {taskId: 1, description: "Collect gold", category: "Plunder", modificationDate: new Date()},
-  {taskId: 2, description: "Prospero", category: "Burn", modificationDate: new Date()}
-];
-
 const availableCategories = ["Burn", "Kill", "Plunder"];
+
+const userTasks = [
+  {taskId: 0, description: "Karfagen", category: "Burn", modificationDate: new Date()},
+  {taskId: 1, description: "Kill all heretics", category: "Kill", modificationDate: new Date()},
+  {taskId: 2, description: "Collect gold", category: "Plunder", modificationDate: new Date()},
+  {taskId: 3, description: "Kill all xenoses", category: "Kill", modificationDate: new Date()},
+  {taskId: 4, description: "Prospero", category: "Burn", modificationDate: new Date()},
+  {taskId: 5, description: "Collect silver", category: "Plunder", modificationDate: new Date()}
+];
 
 class TaskMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tasks: userTasks,
+      categories: availableCategories,
       filteringValue: ""
     }
   }
@@ -57,19 +61,26 @@ class TaskMenu extends React.Component {
     this.setState({filteringValue: value});
   }
 
+  handleCategoryAdding = (value) => {
+    this.setState((previousState) => ({categories: [...previousState.categories, value]}));
+  }
+
   render() {
-    const {filteringValue, tasks} = this.state;
-    const filteredTasks = tasks.filter(task => task.description.includes(filteringValue));
+    const {filteringValue, tasks, categories} = this.state;
 
     return (
       <div className="Menu">
         <FilterBar filteringValue={filteringValue} onFilter={this.handleFiltering}/>
-        <ConfigurationBar categories={availableCategories} onAdd={this.handleTaskAdd}/>
-        <InfoHeader taskAmount={filteredTasks.length}/>
+        <ConfigurationBar
+          categories={categories}
+          onTaskAdd={this.handleTaskAdd}
+          onCategoryAdd={this.handleCategoryAdding}
+        />
+        <InfoHeader taskAmount={tasks.length}/>
         <TaskList
-          tasks={filteredTasks}
+          tasks={tasks}
           filteringValue={filteringValue}
-          categories={availableCategories}
+          categories={categories}
           onEdit={this.handleTaskEdit}
           onDelete={this.handleTaskDelete}
         />
