@@ -26,9 +26,13 @@ class TaskContainer extends React.Component {
     return (
       <div className="TaskContainer">
         <div className="Task">
-          <p>{this.props.description}</p>
-          <button className="Edit" onClick={this.toggleInputComponent}>Edit</button>
-          <button className="Delete" onClick={this.props.onDelete}>Delete</button>
+          <div className="Description">
+            <span>{this.props.description}</span>
+          </div>
+          <div className="Configuration">
+            <button className="Edit btn btn-warning" onClick={this.toggleInputComponent}>Edit</button>
+            <button className="Delete btn btn-danger" onClick={this.props.onDelete}>Delete</button>
+          </div>
         </div>
         {this.state.showEditInputComponent && <TaskInputForm
           taskId={this.props.taskId}

@@ -1,6 +1,10 @@
 .TaskInfoInput {
-    border: solid crimson;
+    border: solid #6a6ae8;
     text-align: left;
     margin-left: auto;
     margin-right: auto;
+}
+
+.Categories {
+    margin: 0 10px 0 10px;
 }

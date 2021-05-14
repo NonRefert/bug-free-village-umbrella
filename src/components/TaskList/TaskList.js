@@ -1,6 +1,7 @@
 import React from "react";
 import "./TaskList.css"
 import TaskContainer from "../TaskContainer/TaskContainer";
+import InfoHeader from "../InfoHeader/InfoHeader";
 
 class TaskList extends React.Component {
   render() {
@@ -25,15 +26,18 @@ class TaskList extends React.Component {
         categoryArray ? categoryArray.push(taskRow) : tasksByCategories[category] = [taskRow];
       });
 
-    const taskElements = [];
+    const listElements = [];
     for (const category in tasksByCategories) {
-      taskElements.push(<h2>{category}</h2>);
-      taskElements.push(<ul className="TaskList">{tasksByCategories[category]}</ul>);
+      const tasks = tasksByCategories[category];
+
+      listElements.push(<h1>{category}</h1>);
+      listElements.push(<InfoHeader taskAmount={tasks.length}/>)
+      listElements.push(<ul className="TaskList">{tasks}</ul>);
     }
 
     return (
       <div>
-        {taskElements}
+        {listElements}
       </div>
     );
   }

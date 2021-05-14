@@ -2,7 +2,6 @@ import React from "react";
 import "./TaskMenu.css"
 import FilterBar from "../FilterBar/FilterBar";
 import ConfigurationBar from "../ConfigurationBar/ConfigurationBar";
-import InfoHeader from "../InfoHeader/InfoHeader";
 import TaskList from "../TaskList/TaskList";
 
 const availableCategories = ["Burn", "Kill", "Plunder"];
@@ -76,7 +75,6 @@ class TaskMenu extends React.Component {
           onTaskAdd={this.handleTaskAdd}
           onCategoryAdd={this.handleCategoryAdding}
         />
-        <InfoHeader taskAmount={tasks.length}/>
         <TaskList
           tasks={tasks}
           filteringValue={filteringValue}

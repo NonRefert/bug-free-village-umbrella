@@ -26,7 +26,7 @@ class ConfigurationBar extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.toggleAddTaskComponent}>Add task</button>
+        <button className="btn btn-success" onClick={this.toggleAddTaskComponent}>Add task</button>
         {this.state.showAddInputComponent && <MultitaskInputForm
           categories={this.props.categories}
           onSubmit={this.handleAdding}

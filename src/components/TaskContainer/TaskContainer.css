@@ -1,11 +1,43 @@
+.TaskContainer {
+    padding: 15px;
+    margin-bottom: 5px;
+}
+
+.Task {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1000px;
+    margin: 0 auto;
+    background: #6583dc;
+    padding: 10px;
+}
+
+.Configuration {
+    position: relative;
+    right: 20px;
+    margin-left: 20px;
+}
+
+.Description {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.FirstContainer {
+    border-top: none;
+}
+
 .Delete {
-    width: 10%;
-    height: 5%;
+    text-align: center;
+    width: 50%;
+    height: 100%;
     font-size: 2em;
 }
 
 .Edit {
-    width: 10%;
-    height: 5%;
+    text-align: center;
+    width: 50%;
+    height: 100%;
     font-size: 2em;
 }

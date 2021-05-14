@@ -27,7 +27,7 @@ class TaskInputForm extends React.Component {
           onDescriptionUpdate={value => this.setState({description: value})}
           onCategoryUpdate={value => this.setState({category: value})}
         />
-        <button onClick={() => this.props.onSubmit({...this.state})}>Submit</button>
+        <button className="btn btn-info" onClick={() => this.props.onSubmit({...this.state})}>Submit</button>
       </div>
     )
   }

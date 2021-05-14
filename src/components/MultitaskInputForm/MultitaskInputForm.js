@@ -55,13 +55,17 @@ class MultitaskInputForm extends React.Component {
                   onDescriptionUpdate={value => this.handleInfoUpdate({...task, description: value}, index)}
                   onCategoryUpdate={value => this.handleInfoUpdate({...task, category: value}, index)}
                 />
-                <button onClick={this.handleInputAdding} disabled={index !== tasks.length - 1}>Add</button>
-                <button onClick={() => this.handleInputRemoving(taskId)} disabled={tasks.length === 1}>Remove</button>
+                <button className="btn btn-dark" onClick={this.handleInputAdding} disabled={index !== tasks.length - 1}>
+                  Add
+                </button>
+                <button className="btn btn-dark" onClick={() => this.handleInputRemoving(taskId)} disabled={tasks.length === 1}>
+                  Remove
+                </button>
               </li>
             );
           })}
         </ul>
-        <button onClick={() => this.props.onSubmit(tasks.slice(0, tasks.length))}>Submit</button>
+        <button className="btn btn-info" onClick={() => this.props.onSubmit(tasks.slice(0, tasks.length))}>Submit</button>
       </div>
     )
   }

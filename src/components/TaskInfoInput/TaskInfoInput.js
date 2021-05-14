@@ -3,7 +3,7 @@ import "./TaskInfoInput.css";
 function TaskInfoInput(props) {
   const categoriesRadio = props.categories.map(category =>
     <label key={category}>
-      <input
+      <input className="Categories"
         type="radio"
         name={`task_info_category_${props.inputIdentifier}`}
         value={category}
