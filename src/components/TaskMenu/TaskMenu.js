@@ -3,6 +3,7 @@ import "./TaskMenu.css"
 import FilterBar from "../FilterBar/FilterBar";
 import ConfigurationBar from "../ConfigurationBar/ConfigurationBar";
 import TaskList from "../TaskList/TaskList";
+import {connect} from "react-redux";
 
 const availableCategories = ["Burn", "Kill", "Plunder"];
 
@@ -86,5 +87,7 @@ class TaskMenu extends React.Component {
     );
   }
 }
+
+
 
 export default TaskMenu;
