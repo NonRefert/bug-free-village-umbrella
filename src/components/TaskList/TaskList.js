@@ -2,6 +2,11 @@ import React from "react";
 import "./TaskList.css"
 import TaskContainer from "../TaskContainer/TaskContainer";
 import InfoHeader from "../InfoHeader/InfoHeader";
+import { connect } from "react-redux";
+
+const mapStateToProps = state => {
+  return { tasks: state.tasks }
+}
 
 class TaskList extends React.Component {
   render() {
@@ -17,9 +22,6 @@ class TaskList extends React.Component {
               description={description}
               taskId={taskId}
               currentCategory={category}
-              categories={this.props.categories}
-              onEdit={this.props.onEdit}
-              onDelete={() => this.props.onDelete(taskId)}
             />
           </li>
 
@@ -43,4 +45,4 @@ class TaskList extends React.Component {
   }
 }
 
-export default TaskList;
+export default connect(mapStateToProps)(TaskList);

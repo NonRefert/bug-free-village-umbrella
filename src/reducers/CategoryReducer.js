@@ -1,7 +1,7 @@
 import { ADD_CATEGORY, MODIFY_CATEGORY } from "../constants/action-types";
 
 export default function categoryReducer(state, action) {
-    switch (action) {
+    switch (action.type) {
         case ADD_CATEGORY:
             return [...state, action.payload];
         case MODIFY_CATEGORY:

@@ -2,6 +2,16 @@ import React from "react";
 import "./ConfigurationBar.css"
 import "../TaskInputForm/TaskInputForm"
 import MultitaskInputForm from "../MultitaskInputForm/MultitaskInputForm";
+import { connect } from "react-redux";
+import { addTasks } from "../../actions/TaskAction";
+
+const mapStateToProps = state => {
+  return { categories: state.categories }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {onTaskAdding: taskInfo => dispatch(addTasks(taskInfo))}
+}
 
 class ConfigurationBar extends React.Component {
   constructor(props) {
@@ -18,8 +28,8 @@ class ConfigurationBar extends React.Component {
     }));
   }
 
-  handleAdding = (tasks) => {
-    this.props.onTaskAdd(tasks);
+  handleTaskAdding = (taskInfo) => {
+    this.props.onTaskAdding(taskInfo);
     this.toggleAddTaskComponent();
   }
 
@@ -29,11 +39,11 @@ class ConfigurationBar extends React.Component {
         <button className="btn btn-success" onClick={this.toggleAddTaskComponent}>Add task</button>
         {this.state.showAddInputComponent && <MultitaskInputForm
           categories={this.props.categories}
-          onSubmit={this.handleAdding}
+          onSubmit={(taskInfo) => this.handleTaskAdding(taskInfo)}
         />}
       </div>
     );
   }
 }
 
-export default ConfigurationBar;
+export default connect(mapStateToProps, mapDispatchToProps)(ConfigurationBar);

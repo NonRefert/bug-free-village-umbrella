@@ -38,6 +38,11 @@ class MultitaskInputForm extends React.Component {
     });
   }
 
+  handleSubmit = () => {
+    const {tasks} = this.state;
+    this.props.onSubmit(tasks.slice(0, tasks.length));
+  }
+
   render() {
     const {tasks} = this.state;
     return (
@@ -58,14 +63,16 @@ class MultitaskInputForm extends React.Component {
                 <button className="btn btn-dark" onClick={this.handleInputAdding} disabled={index !== tasks.length - 1}>
                   Add
                 </button>
-                <button className="btn btn-dark" onClick={() => this.handleInputRemoving(taskId)} disabled={tasks.length === 1}>
+                <button className="btn btn-dark"
+                        onClick={() => this.handleInputRemoving(taskId)}
+                        disabled={tasks.length === 1}>
                   Remove
                 </button>
               </li>
             );
           })}
         </ul>
-        <button className="btn btn-info" onClick={() => this.props.onSubmit(tasks.slice(0, tasks.length))}>Submit</button>
+        <button className="btn btn-info" onClick={this.handleSubmit}>Submit</button>
       </div>
     )
   }
@@ -87,4 +94,4 @@ function* createIdGenerator() {
   }
 }
 
-export default MultitaskInputForm;
+export  default MultitaskInputForm;

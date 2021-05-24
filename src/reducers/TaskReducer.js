@@ -1,9 +1,9 @@
-import {ADD_TASK, MODIFY_TASK, REMOVE_TASK} from "../constants/action-types";
+import {ADD_TASKS, MODIFY_TASK, REMOVE_TASK} from "../constants/action-types";
 
 export default function taskReducer(state, action) {
-    switch (action) {
-        case ADD_TASK:
-            return [...state, action.payload];
+    switch (action.type) {
+        case ADD_TASKS:
+            return addTasks(state, action.payload);
         case MODIFY_TASK:
             return modifyTask(state, action.payload);
         case REMOVE_TASK:
@@ -11,6 +11,14 @@ export default function taskReducer(state, action) {
         default:
             return state;
     }
+}
+
+function addTasks(previousTasks, newTasks) {
+    const tasks = previousTasks.slice(0, previousTasks.length);
+    const date = new Date();
+    newTasks.forEach(task => tasks.push({...task, taskId: tasks.length, modificationDate: date}));
+
+    return tasks;
 }
 
 function modifyTask(tasks, taskInfo) {
